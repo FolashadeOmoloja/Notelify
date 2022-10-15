@@ -14,20 +14,22 @@ li{
   --mint-green: #b3f82a;
   --black-bg: #0e100d;
   --whity: #707070;
+  --light-orange: #e0bf66;
   --poppings: 'Poppins', sans-serif;
   --playfair: 'Playfair Display', serif;
 }
 
 .wrapper{
     display:flex;
- 
-    /* max-width:1440;
-    width: 100%; */
 }
 
 .left-section, .right-section{
-    border: 1px solid red;
+    /* border: 1px solid red; */
     padding: 2.5rem;
+}
+
+.left-section{
+    padding-bottom: 0.8rem;
 }
 
 .left-section{
@@ -108,7 +110,92 @@ li{
 }
 
 .opt{
-  font-size: 13px;
-  padding: 15px;
+  font-size: 14px;
+  padding: 15px 0;
 }
+
+.opt i, .help i{
+    margin-right: 10px;
+}
+
+.opt span{
+    position: relative;
+    left: 130px;
+}
+
+.sp-1{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.left-section .opt:hover{
+    position: relative;
+}
+
+.sp{
+    transition: 0 all ease-in;
+}
+
+.sp:hover{
+    background-color: #707070a7;
+    border-left: 4px solid var(--mint-green);
+    box-sizing: content-box;
+    position: absolute;
+    left: -2.5rem;
+    right: -2.5rem;
+    padding-left: 2.5rem;
+    padding-right: 2.2rem;
+    width: 100%;
+
+
+}
+
+.opt .sp:hover + .note-dropdown {
+    margin-top: 65px;
+}
+
+
+.note-dropdown{
+    margin-left: 24px;
+}
+
+.note-drop-item{
+    margin-top: 15px;
+}
+
+.ad{
+    border-bottom: 2px solid var(--whity);
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+}
+
+.btn-1{
+    width: 100%;
+    height: 20px;
+    box-sizing: content-box;
+    border: 2px solid var(--light-orange);
+    color: var(--light-orange);
+    border-radius: 6px;
+    background: transparent;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    transition: 0.5s all ease;
+}
+.btn-1 i{
+    margin-right: 10px;
+}
+.btn-1:hover{
+    border: 2px solid var(--mint-green);
+    background: #b3f82a9d;
+    font-weight: bold;
+    color: white;
+    
+}
+
+.help{
+    font-family: var(--poppings);
+    font-size: 14px;
+}
+
+/* Right section */
 
