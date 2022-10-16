@@ -12,3 +12,19 @@ window.onclick = function (event) {
             dropUp.style.display = "none";
     }
 }   
+
+/* .sam{
+    background-color: white;
+    padding: 20px;
+    color: black;
+    display: flex;
+}
+
+.sam input{
+    background-color: white;
+    outline: none;
+    font-size: 16px;
+    height: 17px;
+    width: 500px;
+    border: none;
+} */
