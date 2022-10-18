@@ -19,6 +19,28 @@ li{
   --playfair: 'Playfair Display', serif;
 }
 
+/* scroll bar*/
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #ffffff; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: white; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: white; 
+  }
+
+  /* scroll bar ends */
+
 .wrapper{
     display:flex;
 }
@@ -272,7 +294,8 @@ li{
 }
 
 .drop-up{
-    border: 1px solid var(--whity);
+    border: 1px solid #a7a7a7;
+    background-color: white;
     box-shadow: 0 2px 7px rgb(0, 0, 0, 0.5);
     margin-bottom: 20px;
     border-radius: 8px;
@@ -281,6 +304,7 @@ li{
 .drop-up li{
     padding: 15px;
     border-bottom: 1px solid #b4b4b4;
+    cursor:default;
 
 }
 
@@ -292,19 +316,153 @@ background-color: #b3f82aac;
  .btn-2:hover ~ .drop-up{
 display: block;
 }
+.notes-todo{
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+.todo{
+    width: 50vh;
+    height: 50vh;
+    border: 1px solid #a9a9a9;
+    border-radius: 8px;
+    box-shadow: 2px 2px 2px 2px rgb(0, 0, 0, 0.3);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
 
-/* .sam{
+.title{
+    height: 30px;
+    background-color: rgb(246, 246, 162);
+    box-sizing: content-box;
+    border-radius: 7px;
+    padding: 8px 10px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.title i{
+    margin-right: 5px;
+}
+
+.body{
+    margin-top: 20px;
+    height: 32vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+   
+}
+
+.body li+li{
+        margin-top: 10px;
+}
+
+
+
+.check-box{
+    accent-color: var(--mint-green);
+}
+.note-footer{
+margin-top: 6px;
+display: flex;
+justify-content: space-between;
+position: relative;
+
+}
+
+.setting, .setting-note{
+    display: none;
+    border-radius: 5px;
+    border: 1px solid #a7a7a7;
     background-color: white;
-    padding: 20px;
-    color: black;
+    box-shadow: 0 2px 7px rgb(0, 0, 0, 0.5);
+    position: absolute;
+    bottom: 0px;
+    right: 0;
+  
+}
+
+.setting li, .setting-note li{
+    padding: 4px 6px;
+}
+
+.setting li:hover, .setting-note li:hover{
+    background-color: #b3f82aac;
+    
+    }
+.setting i, .setting-note i{
+   margin-right: 5px;
+  
+}
+
+/* pop up! */
+.pop-up{
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: #b3f82a;
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.pop-up-box{
+    width: 50vh;
+    height: 50vh;
+    background-color: whitesmoke;
+    border: 1px solid #a9a9a9;
+    border-radius: 8px;
+    box-shadow: 2px 2px 2px 2px rgb(0, 0, 0, 0.3);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.pop-up-todo{
+    margin-top: 10px;
     display: flex;
 }
 
-.sam input{
-    background-color: white;
-    outline: none;
-    font-size: 16px;
-    height: 17px;
-    width: 500px;
+.check-width{
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    accent-color: var(--mint-green);
+}
+
+.popup-todo{
+    width: 90%;
+    height: 19px;
+    font-size: 18px;
+    background-color: whitesmoke;
     border: none;
-} */
+    outline: none;
+}
+
+.todolist{
+    height: 32vh;
+}
+
+.save-option{
+    margin-top: 6px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.save-option button{
+ box-sizing: content-box;
+ padding: 5px 20px;
+ border: 1px solid var(--mint-green);
+ background: #b3f82a95;
+ border-radius: 10px;
+ font-weight: bold;
+}

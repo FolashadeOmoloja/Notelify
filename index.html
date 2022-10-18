@@ -67,25 +67,104 @@
                 <h3>NOTES</h3><div class="img-1"><img src="./images/notepad-icon.png" alt=""></div>
             </section>
             <section class="notes-todo">
+                <section class="pop-up">
+                    <div class="pop-up-box">
+                        <h2>Create a To-do List</h2>
+                        <div class="todolist">
+                            <div class="pop-up-todo">
+                                <input type="checkbox" class="check-width">
+                                <input type="text" id="todo-input" class="popup-todo">
+                            </div>
+                            <div class="pop-up-todo">
+                                <input type="checkbox" class="check-width">
+                                <input type="text" id="todo-input" class="popup-todo">
+                            </div>
+                            <div class="pop-up-todo">
+                                <input type="checkbox" class="check-width">
+                                <input type="text" id="todo-input" class="popup-todo">
+                            </div>
+                            <div class="pop-up-todo">
+                                <input type="checkbox" class="check-width">
+                                <input type="text" id="todo-input" class="popup-todo">
+                            </div>
+                        </div>
+                        <div class="save-option">
+                            <button class="btn-3">Save</button>
+                            <button id="cancel">Cancel</button>
+                        </div>
+                    </div>
+                </section>
                 <div class="todo">
                     <div class="title">
                         <i class="fa-solid fa-lightbulb"></i><span>To-Do</span>
                     </div>
                     <div class="body">
                         <li>
-                            <input type="checkbox">
+                            <input type="checkbox" class="check-box">
                             <label for="text" id="todo"> Read Book</label>
                         </li>
                         <li>
-                            <input type="checkbox">
+                            <input type="checkbox" class="check-box">
                             <label for="text" id="todo"> Write Book</label>
                         </li>
                         <li>
-                            <input type="checkbox">
+                            <input type="checkbox" class="check-box">
                             <label for="text" id="todo"> Read Book</label>
                         </li>
                         <li>
-                            <input type="checkbox">
+                            <input type="checkbox" class="check-box">
+                            <label for="text" id="todo"> code today and read javascript</label>
+                        </li>
+
+
+                    </div>
+                    <footer class="note-footer">
+                        <span>October 15, 2022</span>
+                        <i class="fa-solid fa-pen-to-square set-icon"></i>
+                        <div class="setting"><ul>
+                            <li id="add"><i class="fa-solid fa-plus"></i>Add</li>
+                            <li id="edit"><i class="fa-solid fa-pencil"></i>Edit</li>
+                            <li id="delete"><i class="fa-solid fa-trash"></i>Delete</li></ul>
+                        </div>
+                    </footer>
+               
+                </div>
+                <div class="todo">
+                    <div class="title">
+                        <i class="fa-solid fa-bookmark"></i><span>NOTES</span>
+                    </div>
+                    <div class="body">
+                        <p id="text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sint cum nihil officia, molestiae optio totam saepe culpa aliquid iure non voluptates unde adipisci ipsam recusandae. Aliquid tenetur molestiae ducimus perspiciatis!</p>
+                    </div>
+                    <footer class="note-footer">
+                        <span>October 15, 2022</span>
+                        <i class="fa-solid fa-pen-to-square set-icon-note"></i>
+                        <div class="setting-note"><ul>
+                            <li id="edit-note"><i class="fa-solid fa-pencil"></i>Edit</li>
+                            <li id="delete-note"><i class="fa-solid fa-trash"></i>Delete</li></ul>
+                        </div>
+                    </footer>
+               
+                </div>
+                <div class="todo">
+                    <div class="title">
+                        <i class="fa-solid fa-lightbulb"></i><span>To-Do</span>
+                    </div>
+                    <div class="body">
+                        <li>
+                            <input type="checkbox" class="check-box">
+                            <label for="text" id="todo"> Read Book</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="check-box">
+                            <label for="text" id="todo"> Write Book</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="check-box">
+                            <label for="text" id="todo"> Read Book</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="check-box">
                             <label for="text" id="todo"> code today and read javascript</label>
                         </li>
 
@@ -102,7 +181,7 @@
             <div class="add-note-btn">
               <div class="drop-up">
                 <ul>
-                    <li>Create To-Do</li>
+                    <li id="create-todo">Create To-Do</li>
                     <li>Create Note</li>
                 </ul>
               </div>
