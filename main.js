@@ -1,7 +1,3 @@
-/*
-To do
-refractor code
- */
 
 let btn2 = document.querySelector("#bt-2");
 let dropUp = document.querySelector(".drop-up")
@@ -10,9 +6,11 @@ let setting = document.querySelector('.setting')
 let setIconNote = document.querySelector(".set-icon-note")
 let settingNote = document.querySelector('.setting-note')
 let getCancelButton = document.querySelector("#cancel")
+let getCancelButtonNote = document.querySelector('#cancel-note')
 let getCreateToDo = document.querySelector("#create-todo")
 let todoInputArray;
 todoInputArray = document.querySelectorAll(".todo-input")
+
 
 const todoArr = []
 btn2.addEventListener('click',() => {
@@ -24,6 +22,9 @@ setIcon.addEventListener('click',() => {
 setIconNote.addEventListener('click',() => {
     settingNote.style.display = 'block'
 });
+getCreateToDo.addEventListener('click', () => {
+    document.querySelector('.pop-up').style.display = 'flex'
+})
 getCancelButton.addEventListener('click', () => {
     document.querySelector('.pop-up').style.display = 'none'
     let div = document.createElement('div')
@@ -38,9 +39,28 @@ getCancelButton.addEventListener('click', () => {
     todoInputArray = document.querySelectorAll(".todo-input")
     todoInputArray.forEach(input => input.addEventListener("keypress",createTodoItem))
 })
-getCreateToDo.addEventListener('click', () => {
-    document.querySelector('.pop-up').style.display = 'flex'
+
+getCancelButtonNote.addEventListener('click', () => {
+    document.querySelector('.pop-up-note').style.display = 'none'
+//     let div = document.createElement('div')
+   
+//     div.classList.add("pop-up-box")
+//     document.querySelector(".notelist").innerHTML = `
+//     <div class="Note-Title">
+//     <input type="text" class="Note-title">
+// </div>
+// <div class="Note-body"></div>
+//     <label for="">Write something ...</label>
+//     <textarea name="notes" class="notes" cols="30" rows="10">
+        
+//     </textarea>
+// </div>
+//     `
+
 })
+
+
+
 //to trigger an event when you click enter
 todoInputArray.forEach(input => input.addEventListener("keypress",createTodoItem))
 
@@ -59,11 +79,16 @@ function createTodoItem  (event) {
     todoInputArray = document.querySelectorAll(".todo-input")
     todoInputArray[todoInputArray.length-1].focus()
     todoInputArray.forEach(input => input.addEventListener("keypress",createTodoItem))
-    // console.log(todoInputArray)
+    //you can also use this.value to get the value of the element that trigered the event
+    todoArr.push(event.target.value)
+ console.log(todoArr)
+  
 
     }
 
     }
+
+    
 
 
 

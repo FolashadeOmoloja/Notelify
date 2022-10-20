@@ -398,7 +398,7 @@ position: relative;
 }
 
 /* pop up! */
-.pop-up{
+.pop-up, .pop-up-note{
     position: fixed;
     top: 0;
     left: 0;
@@ -411,6 +411,10 @@ position: relative;
     justify-content: center;
     align-items: center;
     display: none;
+}
+
+.pop-up-note{
+    display: flex;
 }
 
 .pop-up-box{
@@ -454,6 +458,9 @@ position: relative;
 
 .save-option{
     margin-top: 6px;
+    /* position: fixed;
+    bottom: 180px;
+    width: 20%; */
     display: flex;
     justify-content: space-between;
 }
@@ -465,6 +472,28 @@ position: relative;
  background: #b3f82a95;
  border-radius: 10px;
  font-weight: bold;
+}
+
+.Note-title,.notes{
+    width: 100%;
+    border: 1px solid #707070;
+    border-radius: 5px;
+    padding: 8px;
+    outline: none;
+    background-color: whitesmoke;
+}
+
+.Note-title{
+    height: 30px;
+    margin-bottom: 10px;
+    font-size: 18px;
+
+}
+
+.notes{
+    height: 140px;
+    resize: none;
+    font-size: 17px;
 }
 
 

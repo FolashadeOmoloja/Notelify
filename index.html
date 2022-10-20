@@ -75,22 +75,30 @@
                                 <input type="checkbox" class="check-width">
                                 <input type="text" class="popup-todo todo-input">
                             </div>
-                            <!-- <div class="pop-up-todo">
-                                <input type="checkbox" class="check-width">
-                                <input type="text" id="todo-input" class="popup-todo">
-                            </div>
-                            <div class="pop-up-todo">
-                                <input type="checkbox" class="check-width">
-                                <input type="text" id="todo-input" class="popup-todo">
-                            </div>
-                            <div class="pop-up-todo">
-                                <input type="checkbox" class="check-width">
-                                <input type="text" id="todo-input" class="popup-todo">
-                            </div> -->
                         </div>
                         <div class="save-option">
                             <button class="btn-3" type="submit">Save</button>
                             <button id="cancel">Cancel</button>
+                        </div>
+                    </div>
+                </section>
+                <section class="pop-up-note">
+                    <div class="pop-up-box">
+                        <h2>Create a Note</h2>
+                        <div class="notelist">
+                            <div class="Note-Title">
+                                <input type="text" class="Note-title">
+                            </div>
+                            <div class="Note-body"></div>
+                                <label for="">Write something ...</label>
+                                <textarea name="notes" class="notes" cols="30" rows="10">
+
+                                </textarea>
+                            </div>
+                            <div class="save-option">
+                                <button class="btn-3" type="submit">Save</button>
+                                <button id="cancel-note">Cancel</button>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -182,7 +190,7 @@
               <div class="drop-up">
                 <ul>
                     <li id="create-todo">Create To-Do</li>
-                    <li>Create Note</li>
+                    <li id="create-note">Create Note</li>
                 </ul>
               </div>
               <button class="btn-2" id="bt-2"><i class="fa-solid fa-plus plus"></i>New<i class="fa-solid fa-caret-down plus-1"></i></button>
