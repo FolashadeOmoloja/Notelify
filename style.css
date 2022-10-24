@@ -413,9 +413,6 @@ position: relative;
     display: none;
 }
 
-.pop-up-note{
-    display: flex;
-}
 
 .pop-up-box{
     width: 50vh;

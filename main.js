@@ -8,6 +8,7 @@ let settingNote = document.querySelector('.setting-note')
 let getCancelButton = document.querySelector("#cancel")
 let getCancelButtonNote = document.querySelector('#cancel-note')
 let getCreateToDo = document.querySelector("#create-todo")
+let getCreateNote = document.querySelector("#create-note")
 let todoInputArray;
 todoInputArray = document.querySelectorAll(".todo-input")
 
@@ -24,6 +25,10 @@ setIconNote.addEventListener('click',() => {
 });
 getCreateToDo.addEventListener('click', () => {
     document.querySelector('.pop-up').style.display = 'flex'
+})
+
+getCreateNote.addEventListener('click', () => {
+    document.querySelector('.pop-up-note').style.display = 'flex'
 })
 getCancelButton.addEventListener('click', () => {
     document.querySelector('.pop-up').style.display = 'none'
@@ -42,20 +47,20 @@ getCancelButton.addEventListener('click', () => {
 
 getCancelButtonNote.addEventListener('click', () => {
     document.querySelector('.pop-up-note').style.display = 'none'
-//     let div = document.createElement('div')
+    let div = document.createElement('div')
    
-//     div.classList.add("pop-up-box")
-//     document.querySelector(".notelist").innerHTML = `
-//     <div class="Note-Title">
-//     <input type="text" class="Note-title">
-// </div>
-// <div class="Note-body"></div>
-//     <label for="">Write something ...</label>
-//     <textarea name="notes" class="notes" cols="30" rows="10">
+    div.classList.add("pop-up-box")
+    document.querySelector(".notelist").innerHTML = `
+    <div class="Note-Title">
+    <input type="text" class="Note-title">
+</div>
+<div class="Note-body"></div>
+    <label for="">Write something ...</label>
+    <textarea name="notes" class="notes" cols="30" rows="10">
         
-//     </textarea>
-// </div>
-//     `
+    </textarea>
+</div>
+    `
 
 })
 
