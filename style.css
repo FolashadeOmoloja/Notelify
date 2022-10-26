@@ -381,11 +381,15 @@ position: relative;
     position: absolute;
     bottom: 0px;
     right: 0;
+    font-size: 15px;
+    font-family: var(--poppings);
+    font-weight: 400;
   
 }
 
 .setting li, .setting-note li{
     padding: 4px 6px;
+    cursor: pointer;
 }
 
 .setting li:hover, .setting-note li:hover{
@@ -491,6 +495,10 @@ position: relative;
     height: 140px;
     resize: none;
     font-size: 17px;
+}
+
+.show{
+    display: block;
 }
 
 
