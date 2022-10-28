@@ -86,17 +86,19 @@
                     <div class="pop-up-box">
                         <h2>Create a Note</h2>
                         <div class="notelist">
-                            <div class="Note-Title">
-                                <input type="text" class="Note-title">
-                            </div>
-                            <div class="Note-body"></div>
-                                <label for="">Write something ...</label>
-                                <textarea name="notes" class="notes" cols="30" rows="10">
-
-                                </textarea>
+                            <div class="inner-div-note">
+                                <div class="Note-Title">
+                                    <input type="text" class="Note-title" required>
+                                </div>
+                                <div class="Note-body"></div>
+                                    <label for="">Write something ...</label>
+                                    <textarea name="notes" class="notes" cols="30" rows="10" required>
+    
+                                    </textarea>
+                                </div>
                             </div>
                             <div class="save-option">
-                                <button class="btn-3" type="submit">Save</button>
+                                <button class="btn-4" type="submit">Save</button>
                                 <button id="cancel-note">Cancel</button>
                             </div>
                         </div>
@@ -105,7 +107,7 @@
 
                 <div class="todo">
                     <div class="title">
-                        <i class="fa-solid fa-bookmark"></i><span>NOTES</span>
+                        <i class="fa-solid fa-bookmark"></i><span class="note-title">NOTES</span>
                     </div>
                     <div class="body">
                         <p id="text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sint cum nihil officia, molestiae optio totam saepe culpa aliquid iure non voluptates unde adipisci ipsam recusandae. Aliquid tenetur molestiae ducimus perspiciatis!</p>
@@ -120,34 +122,6 @@
                     </footer>
                
                 </div>
-                <div class="todo">
-                    <div class="title">
-                        <i class="fa-solid fa-lightbulb"></i><span>To-Do</span>
-                    </div>
-                    <div class="body">
-                        <li>
-                            <input type="checkbox" class="check-box">
-                            <label for="text" id="todo"> Read Book</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="check-box">
-                            <label for="text" id="todo"> Write Book</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="check-box">
-                            <label for="text" id="todo"> Read Book</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="check-box">
-                            <label for="text" id="todo"> code today and read javascript</label>
-                        </li>
-
-
-                    </div>
-                    <footer class="note-footer">
-                        <span>October 15, 2022</span>
-                        <i class="fa-solid fa-pen-to-square"></i>
-                    </footer>
                
                 </div>
 

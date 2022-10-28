@@ -10,6 +10,9 @@ let getCancelButtonNote = document.querySelector('#cancel-note')
 let getCreateToDo = document.querySelector("#create-todo")
 let getCreateNote = document.querySelector("#create-note")
 let saveButton = document.querySelector('.btn-3')
+let saveButtonNote = document.querySelector('.btn-4')
+let title;
+let noteInput;
 let todoInputArray;
 todoInputArray = document.querySelectorAll(".todo-input")
 const months = ["January", "February", "March", "April", "May", "June", "July",
@@ -69,7 +72,22 @@ function removePopUp () {
     
     
 }
-
+function removePopUpNote(){
+    document.querySelector('.pop-up-note').style.display = 'none'
+    let div = document.createElement('div')
+       
+    div.classList.add("inner-div-note")
+    document.querySelector(".notelist").innerHTML = `
+    <div class="Note-Title">
+        <input type="text" class="Note-title">
+    </div>
+    <div class="Note-body"></div>
+        <label for="">Write something ...</label>
+        <textarea name="notes" class="notes" cols="30" rows="10">
+    
+        </textarea>
+    </div>`
+}
 getCancelButtonNote.addEventListener('click', () => {
     document.querySelector('.pop-up-note').style.display = 'none'
     let div = document.createElement('div')
@@ -174,6 +192,45 @@ function createTodoItem  (event) {
 
         removePopUp()
 
+    }
+
+    //show note
+    saveButtonNote.addEventListener('click',showNote)
+    function showNote(e){
+        e.preventDefault();
+        createShowNote()
+    }
+
+    function createShowNote(){
+        title = document.querySelector('.Note-title').value
+        let noteInputText = document.querySelector('.notes').value
+         noteInput = noteInputText.replace(/\n\r?/g, '<br />')
+        console.log(noteInput)
+        let div = document.createElement('div')
+        div.classList.add('todo')
+        div.innerHTML = `
+        <div class="title">
+        <i class="fa-solid fa-bookmark"></i><span class="note-title">${title}</span>
+        </div>
+        <div class="body">
+            <p id="text">${noteInput}</p>
+        </div>
+        <footer class="note-footer">
+            <span>${date}</span>
+            <i class="fa-solid fa-pen-to-square set-icon-note" onclick="showSetIcon(this)">
+               <div class="setting-note"><ul>
+               <li id="edit-note" onclick=""><i class="fa-solid fa-pencil"></i>Edit</li>
+               <li id="delete-note"><i class="fa-solid fa-trash"></i>Delete</li></ul>
+            </div>
+            </i>
+
+        </footer>
+    
+            `
+        
+        document.querySelector(".notes-todo").appendChild(div)
+        removePopUpNote()
+            
     }
 
 
