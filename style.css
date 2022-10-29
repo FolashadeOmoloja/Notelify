@@ -388,7 +388,7 @@ position: relative;
 }
 
 .setting li, .setting-note li{
-    padding: 4px 6px;
+    padding: 7px;
     cursor: pointer;
 }
 
@@ -402,7 +402,7 @@ position: relative;
 }
 
 /* pop up! */
-.pop-up, .pop-up-note{
+.pop-up, .pop-up-note, .pop-up-delete{
     position: fixed;
     top: 0;
     left: 0;
@@ -416,6 +416,8 @@ position: relative;
     align-items: center;
     display: none;
 }
+
+
 
 
 .pop-up-box{
@@ -436,6 +438,73 @@ position: relative;
     margin-top: 10px;
     display: flex;
 }
+
+
+
+.pop-up-deletebox, .top{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center ;
+}
+
+.pop-up-deletebox{
+    width: 60vh;
+    height: 40vh;
+    background-color: white;
+    box-shadow: 2px 2px 2px 2px rgb(0, 0, 0, 0.3);
+    text-align: center;
+    border: 1px solid #a9a9a9;
+    border-radius: 50px;
+    color: #0e100d;
+    padding: 10px;
+    overflow-y: hidden;
+}
+
+.top{
+    width: 100%;
+    border-bottom: 1px solid #707070 ;
+    
+
+}
+
+
+.top-img{
+    width: 15vh;
+    height: 15vh;
+}
+
+.top-img img {
+    width: 100%;
+    height: 100%;
+}
+
+.delete-option{
+    margin: 5px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.delete-option button{
+    width: 15vh;
+    height: 5vh;
+    margin: 10px;
+    padding: 5px;
+    font-weight: bold;
+    border: 1px solid #707070;
+    border-radius: 5px;
+}
+
+.btn-7{
+    background-color:  #b3f82aac;
+
+ }
+
+ .btn-7:hover{
+    background-color:  #b3f82af9;
+  
+ }
 
 .check-width{
     width: 18px;
@@ -459,9 +528,7 @@ position: relative;
 
 .save-option{
     margin-top: 6px;
-    /* position: fixed;
-    bottom: 180px;
-    width: 20%; */
+
     display: flex;
     justify-content: space-between;
 }
@@ -474,6 +541,11 @@ position: relative;
  border-radius: 10px;
  font-weight: bold;
 }
+
+.btn-5{
+    display: none;
+}
+
 
 .Note-title,.notes{
     width: 100%;
@@ -497,9 +569,10 @@ position: relative;
     font-size: 17px;
 }
 
-.show{
-    display: block;
+.hide{
+    display: none;
 }
+
 
 
 

@@ -3,18 +3,22 @@ let btn2 = document.querySelector("#bt-2");
 let dropUp = document.querySelector(".drop-up")
 let setIcon = document.querySelectorAll(".set-icon")
 let setting = document.querySelectorAll('.setting')
-let setIconNote = document.querySelector(".set-icon-note")
 let settingNote = document.querySelector('.setting-note')
 let getCancelButton = document.querySelector("#cancel")
-let getCancelButtonNote = document.querySelector('#cancel-note')
+let getCancelButtonNote = document.querySelectorAll('#cancel-note')
 let getCreateToDo = document.querySelector("#create-todo")
 let getCreateNote = document.querySelector("#create-note")
 let saveButton = document.querySelector('.btn-3')
 let saveButtonNote = document.querySelector('.btn-4')
+let saveEditNote = document.querySelector('.btn-5')
+let deleteNote = document.querySelector('.btn-6')
 let title;
 let noteInput;
 let todoInputArray;
 todoInputArray = document.querySelectorAll(".todo-input")
+let noteInfo;
+const Notes = JSON.parse(localStorage.getItem("notesArr") || "[]");
+
 const months = ["January", "February", "March", "April", "May", "June", "July",
               "August", "September", "October", "November", "December"];
 //to get the current date
@@ -41,9 +45,7 @@ btn2.addEventListener('click',() => {
 });
 
 
-setIconNote.addEventListener('click',() => {
-    settingNote.style.display = 'block'
-});
+
 getCreateToDo.addEventListener('click', () => {
     document.querySelector('.pop-up').style.display = 'flex'
 })
@@ -88,7 +90,15 @@ function removePopUpNote(){
         </textarea>
     </div>`
 }
-getCancelButtonNote.addEventListener('click', () => {
+
+function removeDeletePopUp(){
+    document.querySelector('.pop-up-delete').style.display = "none"
+}
+
+let cancelDelete = document.querySelector('.btn-7')
+cancelDelete.addEventListener('click',removeDeletePopUp)
+
+getCancelButtonNote.forEach(el => el.addEventListener('click', () => {
     document.querySelector('.pop-up-note').style.display = 'none'
     let div = document.createElement('div')
    
@@ -104,7 +114,7 @@ getCancelButtonNote.addEventListener('click', () => {
     </textarea>
 </div>
     `
-})
+}))
 
 
 
@@ -169,14 +179,16 @@ function createTodoItem  (event) {
                            <div class="setting">
                               <ul>
                                 <li id="add"><i class="fa-solid fa-plus"></i>Add</li>
-                                <li id="edit"><i class="fa-solid fa-pencil"></i>Edit</li>
+                                <li id="edit"><i class="fa-solid fa-pencil" ></i>Edit</li>
                                 <li id="delete"><i class="fa-solid fa-trash"></i>Delete</li>
                               </ul>
                            </div>
                         </i>
 
                     </footer>
+                   
         `
+         // onclick="editNote(this)"
 
         document.querySelector(".notes-todo").appendChild(div)
 
@@ -198,29 +210,42 @@ function createTodoItem  (event) {
     saveButtonNote.addEventListener('click',showNote)
     function showNote(e){
         e.preventDefault();
+        pushToLocalStorage()
         createShowNote()
     }
 
-    function createShowNote(){
+    function pushToLocalStorage(){
+        document.querySelectorAll(".todo").forEach(div => div.remove());
+
         title = document.querySelector('.Note-title').value
         let noteInputText = document.querySelector('.notes').value
-         noteInput = noteInputText.replace(/\n\r?/g, '<br />')
-        console.log(noteInput)
+         noteInput = noteInputText.replaceAll(/\n\r?/g, `<br>`)
+        noteInfo = {title,noteInput,date}
+        //local storage
+        Notes.push(noteInfo)
+        localStorage.setItem("notesArr", JSON.stringify(Notes));
+    }
+
+    function createShowNote(){
+        if(!Notes) return;
+        document.querySelectorAll(".todo").forEach(div => div.remove());
+        //local storage
+        Notes.forEach((note, id) =>{
         let div = document.createElement('div')
         div.classList.add('todo')
         div.innerHTML = `
         <div class="title">
-        <i class="fa-solid fa-bookmark"></i><span class="note-title">${title}</span>
+        <i class="fa-solid fa-bookmark"></i><span class="note-title">${note.title}</span>
         </div>
         <div class="body">
-            <p id="text">${noteInput}</p>
+            <p id="text">${note.noteInput}</p>
         </div>
         <footer class="note-footer">
-            <span>${date}</span>
+            <span>${note.date}</span>
             <i class="fa-solid fa-pen-to-square set-icon-note" onclick="showSetIcon(this)">
                <div class="setting-note"><ul>
-               <li id="edit-note" onclick=""><i class="fa-solid fa-pencil"></i>Edit</li>
-               <li id="delete-note"><i class="fa-solid fa-trash"></i>Delete</li></ul>
+               <li id="edit-note" onclick="editNote( '${id}' , '${note.title}' ,'${note.noteInput}')" ><i class="fa-solid fa-pencil"></i>Edit</li>
+               <li id="delete-note" onclick="deleteNotes(${id})"><i class="fa-solid fa-trash"></i>Delete</li></ul>
             </div>
             </i>
 
@@ -231,7 +256,46 @@ function createTodoItem  (event) {
         document.querySelector(".notes-todo").appendChild(div)
         removePopUpNote()
             
-    }
+    })}
+    createShowNote()
+
+    //editing/updating Notes
+
+const editNote = (noteId,titleTag, noteInput) => {
+    saveButtonNote.style.display = 'none'
+    saveEditNote.style.display = 'block'
+    document.querySelector('.pop-up-note').style.display = 'flex'
+    document.querySelector('.Note-title').value = titleTag
+    document.querySelector('.notes').value = noteInput.replaceAll('<br>', '\n\r')
+    saveEditNote.addEventListener('click',(e)=>{
+        e.preventDefault()
+        title = document.querySelector('.Note-title').value
+        noteInput = document.querySelector('.notes').value.replaceAll(/\n\r?/g, `<br>`)
+        noteInfo = {title,noteInput,date}
+        Notes.splice(noteId,1,noteInfo)
+        localStorage.setItem("notesArr", JSON.stringify(Notes));
+        removePopUpNote()
+        window.location.reload();
+  })
+  
+}
+
+ //deleting Notes
+
+ function deleteNotes(noteId){
+    document.querySelector('.pop-up-delete').style.display = 'flex'
+    deleteNote.addEventListener('click',(e)=>{
+        e.preventDefault()
+        Notes.splice(noteId,1)
+        localStorage.setItem("notesArr", JSON.stringify(Notes));
+        removeDeletePopUp()
+        window.location.reload();
+    })
+
+  
+ }
+
+
 
 
 
@@ -246,13 +310,13 @@ window.onclick = function (event) {
             dropUp.style.display = "none";
     }
     
-    if (!event.target.matches('.set-icon')) {
+//     if (!event.target.matches('.set-icon')) {
         
-        setting.forEach(el => el.style.display = "none");
-}
-if (!event.target.matches('.set-icon-note')) {
+//         setting.forEach(el => el.style.display = "none");
+// }
+// if (!event.target.matches('.set-icon-note')) {
         
-    settingNote.style.display = "none";
-}
+//     settingNote.style.display = "none";
+// }
 }   
 
