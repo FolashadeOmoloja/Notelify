@@ -17,7 +17,10 @@ let noteInput;
 let todoInputArray;
 todoInputArray = document.querySelectorAll(".todo-input")
 let noteInfo;
+const todoArr = []
 const Notes = JSON.parse(localStorage.getItem("notesArr") || "[]");
+const todos = JSON.parse(localStorage.getItem("TodoList") || "[]")
+
 
 const months = ["January", "February", "March", "April", "May", "June", "July",
               "August", "September", "October", "November", "December"];
@@ -39,7 +42,7 @@ function updateHeaderDate(){
 updateHeaderDate()
 
 
-const todoArr = []
+
 btn2.addEventListener('click',() => {
     dropUp.style.display = 'block'
 });
@@ -161,10 +164,29 @@ function createTodoItem  (event) {
 
     function show(e) {
         e.preventDefault();
+        document.querySelectorAll(".todo").forEach(div => div.remove());
+        window.location.reload();
         todoArr.push(todoInputArray[todoInputArray.length-1].value)
+        pushToLocalStorageTodo()
         showTodo()
+        // window.location.reload();
     }
-    let showTodo = () => {
+
+    function pushToLocalStorageTodo(){
+
+        
+        let todoInfo = {todoArr,date}
+        //local storage
+         todos.push(todoInfo)
+        localStorage.setItem("TodoList", JSON.stringify(todos));
+    }
+
+    function showTodo() {
+        if(!todos) return;
+      
+        todos.forEach((todo, id) =>{
+            console.log(todos)
+            console.log(todoArr)
         let div = document.createElement('div')
         div.classList.add('todo')
         div.innerHTML = `
@@ -174,11 +196,10 @@ function createTodoItem  (event) {
                     <div class="body newClass">
                     </div>
                     <footer class="note-footer">
-                        <span>${date}</span>
+                        <span>${todo.date}</span>
                         <i class="fa-solid fa-pen-to-square set-icon" onclick="showSetIcon(this)">
                            <div class="setting">
                               <ul>
-                                <li id="add"><i class="fa-solid fa-plus"></i>Add</li>
                                 <li id="edit"><i class="fa-solid fa-pencil" ></i>Edit</li>
                                 <li id="delete"><i class="fa-solid fa-trash"></i>Delete</li>
                               </ul>
@@ -188,30 +209,32 @@ function createTodoItem  (event) {
                     </footer>
                    
         `
-         // onclick="editNote(this)"
+ 
 
         document.querySelector(".notes-todo").appendChild(div)
-
-        for(let i = 0; i < todoArr.length; i++){
+        for(let i = 0; i < todo.todoArr.length; i++){
             let li = document.createElement('li')
             li.innerHTML = `
             <input type="checkbox" class="check-box">
-            <label for="text" id="todo"> ${todoArr[i]}</label>
+            <label for="text" id="todo"> ${todo.todoArr[i]}</label>
             `
             let todoBody = document.querySelectorAll(".body")
             todoBody[todoBody.length-1].appendChild(li)
         }
-
+     
         removePopUp()
 
-    }
+
+    })}
+   
 
     //show note
     saveButtonNote.addEventListener('click',showNote)
     function showNote(e){
-        e.preventDefault();
+        // e.preventDefault();
         pushToLocalStorage()
         createShowNote()
+        window.location.reload();
     }
 
     function pushToLocalStorage(){
@@ -227,6 +250,8 @@ function createTodoItem  (event) {
     }
 
     function createShowNote(){
+    
+        
         if(!Notes) return;
         document.querySelectorAll(".todo").forEach(div => div.remove());
         //local storage
@@ -257,7 +282,14 @@ function createTodoItem  (event) {
         removePopUpNote()
             
     })}
-    createShowNote()
+    // createShowNote()
+
+    function showContent(){
+      
+        createShowNote()
+        showTodo()
+    }
+    showContent()
 
     //editing/updating Notes
 
