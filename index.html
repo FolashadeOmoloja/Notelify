@@ -23,7 +23,7 @@
             <section class="options">
               <div class="search">
                   <i class="fa-solid fa-magnifying-glass"></i>
-                  <input type="text" placeholder="Search">
+                  <input type="text" placeholder="Search" id="search-input" onkeyup="search()">
               </div>
               <div class="option-items">
                 <ul class="opts">
@@ -78,6 +78,7 @@
                         </div>
                         <div class="save-option">
                             <button class="btn-3" type="submit">Save</button>
+                            <button class="btn-8" type="submit">Save Edit</button>
                             <button id="cancel">Cancel</button>
                         </div>
                     </div>
@@ -112,9 +113,10 @@
                                 <img src="./images/trash.png" alt="">
                             </div>
                         </div>
-                          <p>Are you sure want to Delete this note?</p>
+                          <p id="comfirmDel">Are you sure want to Delete this note?</p>
                           <div class="delete-option">
                             <button class="btn-6">Yes</button>
+                            <button class="btn-9">Yes</button>
                             <button class="btn-7">No</button>
                         </div>
                     </div>

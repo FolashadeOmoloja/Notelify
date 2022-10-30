@@ -11,15 +11,19 @@ let getCreateNote = document.querySelector("#create-note")
 let saveButton = document.querySelector('.btn-3')
 let saveButtonNote = document.querySelector('.btn-4')
 let saveEditNote = document.querySelector('.btn-5')
+let saveEditTodo =document.querySelector('.btn-8')
 let deleteNote = document.querySelector('.btn-6')
+let deleteTodo = document.querySelector('.btn-9')
 let title;
 let noteInput;
 let todoInputArray;
 todoInputArray = document.querySelectorAll(".todo-input")
 let noteInfo;
+let todoInfo;
 const todoArr = []
 const Notes = JSON.parse(localStorage.getItem("notesArr") || "[]");
 const todos = JSON.parse(localStorage.getItem("TodoList") || "[]")
+const Titlearr = JSON.parse(localStorage.getItem("Titlearr") || "[]")
 
 
 const months = ["January", "February", "March", "April", "May", "June", "July",
@@ -72,10 +76,14 @@ function removePopUp () {
         `
         //to remove all the todos from the array
         todoArr.splice(0,todoArr.length)
-        todoInputArray = document.querySelectorAll(".todo-input")
-        todoInputArray.forEach(input => input.addEventListener("keypress",createTodoItem))
+        addEventToTodoInput()
     
     
+}
+
+function addEventToTodoInput(){
+    todoInputArray = document.querySelectorAll(".todo-input")
+    todoInputArray.forEach(input => input.addEventListener("keypress",createTodoItem))
 }
 function removePopUpNote(){
     document.querySelector('.pop-up-note').style.display = 'none'
@@ -122,7 +130,7 @@ getCancelButtonNote.forEach(el => el.addEventListener('click', () => {
 
 
 //to trigger an event when you click enter
-todoInputArray.forEach(input => input.addEventListener("keypress",createTodoItem))
+todoInputArray.forEach(input => input.addEventListener("keydown",createTodoItem))
 
 function createTodoItem  (event) {
     if (event.key === "Enter") { // key code of the keybord key.
@@ -141,12 +149,21 @@ function createTodoItem  (event) {
     todoInputArray.forEach(input => input.addEventListener("keypress",createTodoItem))
     //you can also use this.value to get the value of the element that trigered the event
     todoArr.push(event.target.value)
-    console.log(todoArr)
+  
   
 
    }
+//deleting the todo
+   if (event.keyCode == 46) { // key code of the delete key.
+    event.preventDefault();
+    let todoArrIndex = todoArr.indexOf(event.target.value)
+    console.log(todoArrIndex)
+    todoArr.splice(todoArrIndex,1)
+     event.target.parentElement.remove()
+   }
 
     }
+    
 
     saveButton.addEventListener('click',show)
 
@@ -175,23 +192,23 @@ function createTodoItem  (event) {
     function pushToLocalStorageTodo(){
 
         
-        let todoInfo = {todoArr,date}
+        todoInfo = {todoArr,date}
         //local storage
          todos.push(todoInfo)
+        Titlearr.push('To-Do')
         localStorage.setItem("TodoList", JSON.stringify(todos));
+        localStorage.setItem("Titlearr", JSON.stringify(Titlearr));
     }
 
     function showTodo() {
         if(!todos) return;
       
         todos.forEach((todo, id) =>{
-            console.log(todos)
-            console.log(todoArr)
         let div = document.createElement('div')
         div.classList.add('todo')
         div.innerHTML = `
         <div class="title">
-                        <i class="fa-solid fa-lightbulb"></i><span>To-Do</span>
+                        <i class="fa-solid fa-lightbulb"></i><span class="title-value">To-Do</span>
                     </div>
                     <div class="body newClass">
                     </div>
@@ -200,8 +217,8 @@ function createTodoItem  (event) {
                         <i class="fa-solid fa-pen-to-square set-icon" onclick="showSetIcon(this)">
                            <div class="setting">
                               <ul>
-                                <li id="edit"><i class="fa-solid fa-pencil" ></i>Edit</li>
-                                <li id="delete"><i class="fa-solid fa-trash"></i>Delete</li>
+                                <li id="edit" onclick="editTodo('${id}', '${todo.todoArr}')"><i class="fa-solid fa-pencil" ></i>Edit</li>
+                                <li id="delete" onclick="deleteAllTodos('${id}')"><i class="fa-solid fa-trash"></i>Delete</li>
                               </ul>
                            </div>
                         </i>
@@ -209,7 +226,7 @@ function createTodoItem  (event) {
                     </footer>
                    
         `
- 
+   
 
         document.querySelector(".notes-todo").appendChild(div)
         for(let i = 0; i < todo.todoArr.length; i++){
@@ -226,6 +243,66 @@ function createTodoItem  (event) {
 
 
     })}
+
+    //editing Todos
+    function editTodo(todoId,todoArray){
+    
+        saveEditTodo.style.display = 'block'
+        saveButton.style.display = 'none'
+        oldTodos = todoArray.split(",")
+        getCreateToDo.click()
+        oldTodos.forEach(el => todoArr.push(el))
+        
+        for(let i = 0; i < todoArr.length; i++){
+            //   console.log(oldTodos[i])
+             let div = document.createElement('div')
+            
+             div.innerHTML = `
+             <input type="checkbox" class="check-width">
+             <input type="text" class="popup-todo todo-input">
+             `
+             div.classList.add("pop-up-todo")
+             document.querySelector(".todolist").appendChild(div)
+             let arrOfTodos = document.querySelectorAll('.todo-input')
+             arrOfTodos[i].value =todoArr[i]
+         
+        }
+        addEventToTodoInput()
+  
+        //pushing edits to local storage
+     
+        saveEditTodo.addEventListener('click',(e)=>{
+            e.preventDefault()
+            todoArr.push(todoInputArray[todoInputArray.length-1].value)
+            todoInfo = {todoArr,date}
+            todos.splice(todoId,1,todoInfo)
+            // todos[todoId] = todoInfo
+            console.log(todos[todoId])
+            localStorage.setItem("TodoList", JSON.stringify(todos));
+            removePopUp()
+            window.location.reload();
+      })
+    }
+
+    //deleting entire todolist
+
+    function deleteAllTodos(todoId){
+            document.querySelector('.btn-6').style.display ='none'
+            document.querySelector('.btn-9').style.display ='block'
+            document.querySelector('#comfirmDel').innerHTML = 'Are you sure want to Delete this To-Do?'
+            document.querySelector('.pop-up-delete').style.display = 'flex'
+            deleteTodo.addEventListener('click',(e)=>{
+                e.preventDefault()
+                todos.splice(todoId,1)
+                localStorage.setItem("TodoList", JSON.stringify(todos));
+                removeDeletePopUp()
+                window.location.reload();
+            })
+        
+          
+         
+    }
+    
    
 
     //show note
@@ -246,7 +323,9 @@ function createTodoItem  (event) {
         noteInfo = {title,noteInput,date}
         //local storage
         Notes.push(noteInfo)
+        Titlearr.push(title)
         localStorage.setItem("notesArr", JSON.stringify(Notes));
+        localStorage.setItem("Titlearr", JSON.stringify(Titlearr));
     }
 
     function createShowNote(){
@@ -260,7 +339,7 @@ function createTodoItem  (event) {
         div.classList.add('todo')
         div.innerHTML = `
         <div class="title">
-        <i class="fa-solid fa-bookmark"></i><span class="note-title">${note.title}</span>
+        <i class="fa-solid fa-bookmark"></i><span class="note-title title-value">${note.title}</span>
         </div>
         <div class="body">
             <p id="text">${note.noteInput}</p>
@@ -329,26 +408,27 @@ const editNote = (noteId,titleTag, noteInput) => {
 
 
 
-
-
-    
-
-
-
-
 window.onclick = function (event) {
     if (!event.target.matches('#bt-2')) {
         
             dropUp.style.display = "none";
     }
     
-//     if (!event.target.matches('.set-icon')) {
-        
-//         setting.forEach(el => el.style.display = "none");
-// }
-// if (!event.target.matches('.set-icon-note')) {
-        
-//     settingNote.style.display = "none";
-// }
 }   
 
+
+
+function search(){
+    let searchInput = document.querySelector('#search-input'),
+    filterWords = searchInput.value.toLowerCase(),
+    searchTitleArr = document.querySelectorAll('.title-value'),
+    content = document.querySelectorAll('.todo')
+    for(let i = 0; i< searchTitleArr.length; i++){
+        let txtValue  = searchTitleArr[i].innerText || searchTitleArr[i].innerText
+        if(txtValue.toLowerCase().indexOf(filterWords) > -1) {
+                        content[i].style.display = "";
+                    } else {
+                        content[i].style.display = "none";
+                    }
+    }
+}
