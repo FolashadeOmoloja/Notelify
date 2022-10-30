@@ -157,7 +157,6 @@ function createTodoItem  (event) {
    if (event.keyCode == 46) { // key code of the delete key.
     event.preventDefault();
     let todoArrIndex = todoArr.indexOf(event.target.value)
-    console.log(todoArrIndex)
     todoArr.splice(todoArrIndex,1)
      event.target.parentElement.remove()
    }
@@ -254,7 +253,6 @@ function createTodoItem  (event) {
         oldTodos.forEach(el => todoArr.push(el))
         
         for(let i = 0; i < todoArr.length; i++){
-            //   console.log(oldTodos[i])
              let div = document.createElement('div')
             
              div.innerHTML = `
@@ -277,7 +275,6 @@ function createTodoItem  (event) {
             todoInfo = {todoArr,date}
             todos.splice(todoId,1,todoInfo)
             // todos[todoId] = todoInfo
-            console.log(todos[todoId])
             localStorage.setItem("TodoList", JSON.stringify(todos));
             removePopUp()
             window.location.reload();
@@ -432,3 +429,13 @@ function search(){
                     }
     }
 }
+
+//toggle 
+let toggleOn = document.querySelector('.toggle')
+let toggleOff = document.querySelector('.show-main')
+toggleOn.addEventListener('click',()=>{
+    document.querySelector('.left-section').style.display = 'block'
+})
+toggleOff.addEventListener('click',()=>{
+    document.querySelector('.left-section').style.display = 'none'
+})
