@@ -154,12 +154,12 @@ function createTodoItem  (event) {
 
    }
 //deleting the todo
-   if (event.keyCode === 46) { // key code of the delete key.
-    alert('hi')
+   else if (event.keyCode === 46) { // key code of the delete key.
     event.preventDefault();
     let todoArrIndex = todoArr.indexOf(event.target.value)
     todoArr.splice(todoArrIndex,1)
      event.target.parentElement.remove()
+     
    }
 
     }
