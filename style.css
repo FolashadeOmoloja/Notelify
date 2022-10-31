@@ -254,6 +254,10 @@ li{
     font-family: var(--poppings);
 }
 
+.body p {
+    word-wrap: break-word;
+}
+
 .notes-sect{
     display: flex;
 }
