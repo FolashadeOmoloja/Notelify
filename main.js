@@ -146,7 +146,7 @@ function createTodoItem  (event) {
     document.querySelector(".todolist").appendChild(div)
     todoInputArray = document.querySelectorAll(".todo-input")
     todoInputArray[todoInputArray.length-1].focus()
-    todoInputArray.forEach(input => input.addEventListener("keypress",createTodoItem))
+    todoInputArray.forEach(input => input.addEventListener("keydown",createTodoItem))
     //you can also use this.value to get the value of the element that trigered the event
     todoArr.push(event.target.value)
   
@@ -154,7 +154,8 @@ function createTodoItem  (event) {
 
    }
 //deleting the todo
-   if (event.keyCode == 46) { // key code of the delete key.
+   if (event.keyCode === 46) { // key code of the delete key.
+    alert('hi')
     event.preventDefault();
     let todoArrIndex = todoArr.indexOf(event.target.value)
     todoArr.splice(todoArrIndex,1)
